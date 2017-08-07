@@ -1,0 +1,413 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script type="text/javascript" src="myscript.js"></script>
+<title></title> 
+
+</head> 
+<body> 
+<nav> 
+<a href="www.google.co.uk">Google</a>| 
+<a href="www.baidu.com">Baidu</a>| 
+<a href="www.taobao.com">Taobao</a> 
+</nav> 
+<p>My family and I visited The Epcot center this summer.</p> 
+<aside>/*define content*/ 
+ <h4>Epcot Center</h4> 
+ <p>The Epcot Center is a theme park in Disney World, Florida.</p>
+ <p id="jstag1">jstag1</p> 
+ <script>document.getElementById("jstag1").innerHTML="Hi";</script>
+</aside> 
+<figure> 
+<img src="M2.png" height="30" width="30" alt="image"> 
+<figcaption>Fig01 Introduction Image</figcaption> 
+</figure> 
+<details> 
+<summary>Copyright</summary> 
+<p>-by me</p> 
+<p>created in <mark>1999</mark></p> 
+</details> 
+<p>We open at <time>10:00</time> every morning.</p> 
+<p>I have a date on <time datetime="2008-02-14 20:00">Valentines day</time>.</p> 
+<article> 
+<header id="jstag2">try</header>
+<script>document.getElementById("jstag2").innerHTML="Hi";</script>
+<content>The element defines some content aside from the content it is placed in (like a sidebar).The aside content should be related to the surrounding content.</content> 
+</article> 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>Description of A</td>
+  </tr>
+  <tr>
+    <td>B</td>
+    <td>Description of B</td>
+  </tr>
+</table>
+<canvas id="myCanvasstroke" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+<script>
+var c = document.getElementById("myCanvasstroke");
+var ctx = c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+</script>
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<script>
+var ctx=document.getElementById('myCanvas').getContext("2d");
+//var c = document.getElementById("myCanvas");
+//var ctx = c.getContext("2d");
+// Create gradient
+var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(10,10,150,80);
+</script>
+
+<p>Image to use:</p>
+<img id="scream" src="M2.png" alt="The Scream" width="220" height="277">
+<p>Canvas to fill:</p>
+<canvas id="myCanvasimg" width="250" height="300"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+<p><button onclick="myCanvas()">Try it</button></p>
+<script>
+function myCanvas() {
+    var c = document.getElementById("myCanvasimg");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img,10,10);
+}
+</script>
+
+<svg height="130" width="500">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+  <text fill="#ffffff" font-size="45" font-family="Verdana" x="50" y="86">SVG</text>
+  Sorry, your browser does not support inline SVG.
+</svg>
+<h1>My first map</h1>
+<div id="map1" style="width:800px; height:600px;background-color:pink;"></div>
+<h1>My second map</h1>
+<div id="map2" style="width:400px; height:400px;background-color:pink;"></div>
+<script>
+	function myMap(){
+		var london = new google.maps.LatLng(51.5, -0.12);
+		var amsterdam = new google.maps.LatLng(52.39,4.88);
+		var stavanger  = new google.maps.LatLng(58.98,5.73);
+		var mapOptions1 = {
+			center: london,
+			zoom: 5,
+			//disableDefaultUI: true,
+				panControl: true,
+			    zoomControl: true,
+			    mapTypeControl: true,
+			    scaleControl: true,
+			    streetViewControl: true,
+			    overviewMapControl: true,
+			    rotateControl: true,  
+			MapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var mapOptions2 ={
+			center: new google.maps.LatLng(45.434046,12.340284),
+			zoom: 18,
+			MapTypeId:google.maps.MapTypeId.HYBRID
+		};
+		var maps1 = new google.maps.Map(document.getElementById("map1"),mapOptions1);
+		var maps2 = new google.maps.Map(document.getElementById("map2"),mapOptions2);
+		var marker = new google.maps.Marker({
+			position:london,
+			//icon: "pinkball.png",
+			animation: google.maps.Animation.BOUNCE			
+		});
+		marker.setMap(maps1);
+		//var infowindow= new google.maps.InfoWindow({content:"london"});
+		//infowindow.open(map1,marker);
+		var mytrip1 = [stavanger,amsterdam,london];
+		var polyline = new google.maps.Polyline({
+			path: mytrip1,
+			strokeColor:"#0000FF",
+			strokeOpacity:0.8,
+			strokeWeight:2
+		});
+		polyline.setMap(maps1);
+		var polygon = new google.maps.Polygon({
+			path: mytrip1,
+			strokeColor:"#0000FF",
+			strokeOpacity:0.8,
+			strokeWeight:2,
+			fillColor:"#0000FF",
+			fillOpacity:0.8,
+			fillWeight:2
+		});
+		polygon.setMap(maps1);
+		var circle = new google.maps.Circle({
+			center:london,
+			radius:100000,
+			strokeColor:"#0000FF",
+			strokeOpacity:0.8,
+			strokeWeight:2,
+			fillColor:"#0000FF",
+			fillOpacity:0.8,
+		});
+		circle.setMap(maps1);
+		var infowindow = new google.maps.InfoWindow({content:"London"});
+		/*google.maps.event.addListener(marker,'click',function(){
+			var pos = maps1.getZoom();
+			maps1.setZoom(9);
+			maps1.setCenter(marker.getPosition());
+			window.setTimeout(function(){maps1.setZoom(pos);},3000);
+			infowindow.open(maps1,marker);
+		});*/
+		google.maps.event.addListener(maps1,'click',function(event){
+			placeMarker(maps1,event.latLng);
+		});
+	}
+	function placeMarker(maps1,location){
+		var marker = new google.maps.Marker({
+			position:location,
+			map:maps1
+		});
+		var infowindow = new google.maps.InfoWindow({
+			content: "Lantitude:"+location.lat()+"<br>Longitude:"+location.lng()
+		});
+		infowindow.open(maps1,marker);
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvNPVEV5h2Wu8xIP7swbHgsjm3vHNwQO8&callback=myMap"></script>
+<video height="240" width="320" controls autoplay>
+	<source src="movie.mp4" type="video/mp4">
+</video>
+<div style="text-align:center">
+<button onclick="playpause()">play/pause</button>
+<button onclick="makebig()">big</button>
+<button onclick="makesmall()">small</button>
+<button onclick="makenormal()">normal</button><br/>
+<video id="video1" width="420">
+	<source src="movie.mp4" type="video/mp4">
+</video>
+</div>
+<script>
+var video1 = document.getElementById("video1");
+	function playpause(){
+		if(video1.paused){
+			video1.play();
+		}else{
+			video1.pause();
+		}
+	}
+	function makebig(){
+		video1.width=560;
+	}
+	function makesmall(){
+		video1.width=320;
+	}
+	function makenormal(){
+		video1.width=420;
+	}
+</script>
+<audio controls>
+	<source src="horse.ogg" type="audio/ogg">
+</audio>
+<object width="400" height="50" data="bookmark.swf"></object>
+<embed width="400" height="50" src="bookmark.swf">
+<object width="100" height="100" data="M2.png"></object>
+<iframe width="400" height="400"src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0"></iframe>
+<canvas id="canvas" width="400" height="400"
+style="background-color:#333">
+</canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+</script>
+<button onclick="navigationObj()">try it</button>
+<div id="navobj"></div>
+<script>
+	function navigationObj(){
+		var txt = "";
+		txt += "<p>Browser CodeName: " + window.navigator.appCodeName + "</p>";
+		txt += "<p>Browser Name: " + navigator.appName + "</p>";
+		txt += "<p>Browser Version: " + navigator.appVersion + "</p>";
+		txt += "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+		txt += "<p>Browser Language: " + navigator.language + "</p>";
+		txt += "<p>Browser Online: " + navigator.onLine + "</p>";
+		txt += "<p>Platform: " + navigator.platform + "</p>";
+		txt += "<p>Platform: " + navigator.product + "</p>";
+		txt += "<p>Geolocation: " + navigator.geolocation.getCurrentPosition+ "</p>"; //->Geolocation: function getCurrentPosition() { [native code] }
+		txt += "<p>User-agent header: " + navigator.userAgent + "</p>";
+
+		document.getElementById("navobj").innerHTML = txt;
+	}
+</script>
+<!--js object property-->
+<p id="demo1"></p>
+<script>
+	var txt ="";
+	var person = {
+		fname: "John",
+		lname: "Doe",
+		age:35,
+		occupation: "Doc",
+		fullname: function(){return this.fname+""+this.lname;} //property can be a value or a function. fullname as a property, fullname() as a method
+	};
+	person.nationality = "UK";//add new property
+	//delete person.nationality;//delete a property
+ 	for (var i in person){
+ 		txt+=i+":"+person[i]+"<br>";
+ 	}
+
+ 	document.getElementById("demo1").innerHTML=txt+person.fullname();
+</script>
+<script>
+function Book(name,year){
+this.name = name;
+this.year = '('+year+')';
+}
+var myBook = new Book("PA",2014);
+var secondBook = new Book("SJ",2016);
+console.log(myBook.name,myBook.year);
+console.log(secondBook.name,secondBook.year);
+</script>
+<input type="text" id="input1">
+<button onclick="inputvalidate()">submit</button>
+<p id="msg">try</p>
+<script>
+function inputvalidate(){
+	var x,msg;		
+	msg=document.getElementById("msg");
+	msg.innerHTML="";
+	x=document.getElementById("input1").value;
+	try{
+		if (isNaN(x)) throw "not a number";
+		if(x=="") throw "empty";
+		x=Number(x);
+		if(x>50) throw "exceed";
+		if(x<5) throw "not reach";
+	}
+	catch(err){
+		msg.innerHTML="Input is "+err;
+	}
+	finally{
+		document.getElementById("input1").value="";
+	}
+}
+</script>
+<p id="msg1"></p>
+<script>
+	var x=3.1415;
+	var y="hello";
+	try{
+		//x.toPrecision(500);//RangeError:toPrecision() argument must be between 1 and 21
+		//x=y+1; //ReferenceError:y is not defined
+		//eval("alert(Hello')"); //SyntaxError:Invalid or unexpected token
+		//x.toUpperCase(); //TypeError:x.toUpperCase is not a function
+		decodeURI("%%%"); //URIError:URI malformed
+	}
+	catch(err){
+		document.getElementById("msg1").innerHTML=err.name+":"+err.message;
+	}
+</script>
+<footer> 
+<p>Posted by: Hege Refsnes</p> 
+  <p>Contact information: <a href="mailto:someone@example.com"> 
+  someone@example.com</a> 
+  </footer> 
+</body> 
+</html> 
+ 
